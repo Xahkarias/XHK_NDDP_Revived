@@ -1,0 +1,47 @@
+#copied from gigas, commented for assisting my dumbass self
+xhk_assign_ndb_ids = {
+
+	#sets the variable only when there are no "planets" with a NDB, otherwise it already exists
+	if = {
+		limit = {
+			NOT = { any_system_planet = { has_planet_flag = has_ndb_id } }
+		}
+		set_variable = {
+			which = current_ndb_id
+			value = 1
+		}
+	}
+	#sets a flag for all planets that need to have a variable but don't yet have one
+	every_system_planet = {
+		limit = {
+			is_star = yes
+			has_planet_flag = has_ndb #only those who need it
+			NOT = { has_planet_flag = has_ndb_id } #but don't yet have it
+		}
+		set_planet_flag = needs_ndb_id #sets this flag so the loop later can check it and apply only for the specified planets
+	}
+	#loop applies the variable, increases the variable and removes the flag until it runs out of planets
+	while = {
+		limit = {
+			any_system_planet = {
+				has_planet_flag = needs_ndb_id #continues as long as some planet has the flag
+			}
+		}
+		random_system_planet = { #any planet
+			limit = {
+				has_planet_flag = needs_ndb_id #that needs the id
+			}
+			set_variable = { #gets it
+				which = xhk_ndb_id
+				value = THIS.solar_system.current_ndb_id
+			}
+			set_planet_flag = has_ndb_id #it now has it
+			remove_planet_flag = needs_ndb_id #so it no longer needs it
+		}
+		change_variable = {
+			which = current_ndb_id
+			value = 1
+			# increment the variable by 1
+		}
+	}
+}

@@ -1,0 +1,2 @@
+component_set = { key = "XHK_NDB_MAIN"			icon = "GFX_ship_part_NDB_main"			icon_frame = 1 }
+component_set = { key = "XHK_NDB_SECONDARY"		icon = "GFX_ship_part_NDB_secondary"	icon_frame = 1 }

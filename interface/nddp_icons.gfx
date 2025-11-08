@@ -1,0 +1,13 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_ship_part_ndb_reactor"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_ndb_reactor.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+
+    spriteType = {
+        name = GFX_xhk_nicoll_dyson_defense_0_build_icon
+        textureFile = gfx/interface/icons/technologies/tech_xhk_nicoll_dyson.dds
+    }
+}

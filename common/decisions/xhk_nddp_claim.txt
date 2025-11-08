@@ -1,0 +1,37 @@
+xhk_nddp_decision_claim_system_nddp = {
+    sound = event_administrative_work
+    icon = decision_ringworld_upgrade
+
+    resources = {
+        category = decisions
+        cost = {
+            influence = 5
+        }
+    }
+
+    potential = {
+        is_star = yes
+        space_owner = { is_ai = no }
+    }
+
+    effect = {
+        custom_tooltip = xhk_nddp_decision_claim_system_nddp_effect
+        hidden_effect = {
+            solar_system = {
+                every_system_megastructure = {
+                    limit = {
+                        is_megastructure_type = xhk_nicoll_dyson_ruined
+                        owner = {
+                            NOT = { is_country = ROOT.space_owner }
+                        }
+                    }
+                    set_owner = ROOT.space_owner
+                }
+            }
+        }
+    }
+
+    ai_weight = {
+        weight = 0
+    }
+}

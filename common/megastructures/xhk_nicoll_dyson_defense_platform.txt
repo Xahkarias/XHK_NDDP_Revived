@@ -1,0 +1,289 @@
+xhk_nicoll_dyson_defense_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = -7 y = -7 }
+	build_time = 1800
+	resources = {
+		category = megastructures
+        inline_script = {
+            script = megastructures/generic_parts/giga_mega_alloy_cost
+            alloys = 5000
+        }
+		cost = {
+			influence = 200
+		}
+
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	prerequisites = { "tech_xhk_nicoll_dyson" }
+
+    potential = {
+        has_technology = tech_xhk_nicoll_dyson
+    }
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_black_hole"
+			NOT = { is_star_class = sc_black_hole }
+		}
+		custom_tooltip = {
+			fail_text = "STAR_BLOCKED_BY_MEGA"
+            xhk_nddp_has_star_blocking_mega = yes
+		}
+		custom_tooltip = {
+			fail_text = "ALREADY_HAS_NDB"
+			NOT = { has_star_flag = xhk_NDB }
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+				NOT = { is_planet_class = pc_t_star }
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+
+		modifier = {
+			factor = 0.1
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+
+		modifier = {
+			factor = 3
+			any_system_planet = {
+				is_colony = yes
+			}
+		}
+
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+	}
+
+	on_build_complete = {
+		set_star_flag = xhk_NDB
+        save_event_target_as = xhk_event_system
+		from = {
+            country_event = {
+                id = xhk_ndb.100
+            }
+        }
+	}
+}
+
+xhk_nicoll_dyson_defense_1 = {
+	entity = "xhk_nicoll_dyson_1_entity"
+	construction_entity = "xhk_nicoll_dyson_1_entity"
+	portrait = "GFX_megastructure_construction_background"
+	upgrade_from = {
+        xhk_nicoll_dyson_defense_0
+	}
+	prerequisites = { "tech_xhk_nicoll_dyson" }
+	place_entity_on_planet_plane = no
+	build_time = 2400
+	resources = {
+		category = megastructures
+        inline_script = {
+            script = megastructures/generic_parts/giga_mega_alloy_cost
+            alloys = 20000
+        }
+		upkeep = {
+			energy = 400
+			alloys = 200
+		}
+	}
+	ai_weight = {
+		factor = 10
+	}
+	on_build_complete = {
+        save_event_target_as = xhk_event_system
+		from = {
+			country_event = {
+				id = xhk_ndb.101
+			}
+		}
+	}
+}
+
+xhk_nicoll_dyson_defense_2 = {
+	entity = "xhk_nicoll_dyson_2_entity"
+	construction_entity = "xhk_nicoll_dyson_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	upgrade_from = {
+        xhk_nicoll_dyson_defense_1
+	}
+	prerequisites = { "tech_xhk_nicoll_dyson" }
+	place_entity_on_planet_plane = no
+	build_time = 2400
+	resources = {
+		category = megastructures
+        inline_script = {
+            script = megastructures/generic_parts/giga_mega_alloy_cost
+            alloys = 20000
+        }
+		upkeep = {
+			energy = 400
+			alloys = 200
+		}
+	}
+	ai_weight = {
+		factor = 10
+	}
+	on_build_complete = {
+        save_event_target_as = xhk_event_system
+		from = {
+			country_event = {
+				id = xhk_ndb.102
+			}
+		}
+	}
+}
+
+xhk_nicoll_dyson_defense_3 = {
+	entity = ""
+	construction_entity = "xhk_nicoll_dyson_3_entity"
+	portrait = "GFX_megastructure_construction_background"
+	upgrade_from = {
+        xhk_nicoll_dyson_defense_2
+	}
+	prerequisites = { "tech_xhk_nicoll_dyson" }
+	place_entity_on_planet_plane = no
+	build_time = 2400
+	resources = {
+		category = megastructures
+        inline_script = {
+            script = megastructures/generic_parts/giga_mega_alloy_cost
+            alloys = 20000
+        }
+		upkeep = {
+			energy = 400
+			alloys = 200
+		}
+	}
+	ai_weight = {
+		factor = 10
+	}
+	on_build_complete = {
+		fromfrom.planet = { 
+			save_event_target_as = ndb_planet 
+			set_planet_flag = has_ndb
+			solar_system = {
+				xhk_assign_ndb_ids = yes
+			}
+		}
+		create_fleet = { 
+			name = "Nicoll Dyson Beam" 
+			settings = { spawn_debris = no } 
+			effect = { 
+				set_owner = prev.space_owner
+				create_ship = { 
+					name = "Nicoll Dyson Beam" 
+					random_existing_design = xhk_nicoll_dyson
+					graphical_culture = mammalian_01
+				}
+				set_location = {
+					target = event_target:ndb_planet
+					distance = 0.1
+					angle = 0
+				}
+				set_variable = {
+					which = xhk_ndb_ship_id
+					value = ROOT.fromfrom.planet.xhk_ndb_id
+				}
+			}
+		}
+		if = {
+			limit = { fromfrom.planet = { has_planet_flag = just_repaired_ndb } }
+			fromfrom.planet = { remove_planet_flag = just_repaired_ndb }
+		}
+		else = {
+            save_event_target_as = xhk_event_system
+			from = { country_event = { id = xhk_ndb.103 } }
+		}
+		fromfrom = {
+			set_variable = {
+				which = xhk_ndb_mega_id
+				value = ROOT.fromfrom.planet.xhk_ndb_id
+			}
+		}
+	}
+}
+
+xhk_nicoll_dyson_ruined = {
+	entity = "xhk_nicoll_dyson_broken_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	potential = { always = no }
+	possible = { always = no }
+}
+xhk_nicoll_dyson_repaired = {
+	entity = "xhk_nicoll_dyson_2_entity"
+	construction_entity = "xhk_nicoll_dyson_2_entity"
+	portrait = "GFX_megastructure_construction_background"
+	upgrade_from = {
+        xhk_nicoll_dyson_ruined
+	}
+	prerequisites = { "tech_xhk_nicoll_dyson" }
+	place_entity_on_planet_plane = no
+	build_time = 2400
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 8000
+		}
+	}
+	ai_weight = {
+		factor = 10
+	}
+	on_build_complete = {
+		# clear_all_system_debris = yes
+		fromfrom.planet = {
+			set_planet_flag = just_repaired_ndb
+		}
+        save_event_target_as = xhk_event_system
+		spawn_megastructure = {
+			type = xhk_nicoll_dyson_defense_3
+			planet = ROOT.fromfrom.planet
+			owner = ROOT.from
+		}
+		from = { country_event = { id = xhk_ndb.104 } }
+		remove_megastructure = fromfrom
+	}
+}

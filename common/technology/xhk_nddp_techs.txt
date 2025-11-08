@@ -1,0 +1,106 @@
+tech_xhk_nicoll_dyson = {
+	cost = 350000
+	area = physics
+	tier = 5
+	category = { field_manipulation }
+	prerequisites = { "tech_mega_engineering" "tech_dyson_sphere" }
+	weight = @tier5weight3
+}
+
+tech_xhk_ndb_supernova = {
+	cost = 350000
+	area = physics
+	tier = 5
+	category = { field_manipulation }
+	prerequisites = { 
+		"tech_xhk_nicoll_dyson"
+	}
+	potential = {
+		NOT = {
+			has_ethic = ethic_pacifist
+			has_ethic = ethic_fanatic_pacifist
+		}
+		has_crisis_level = crisis_level_5
+	}
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_UNLOCK_NDB_SUPERNOVA"
+			desc = "TECH_UNLOCK_NDB_SUPERNOVA_DESC"
+		}
+	}
+	weight = @tier5weight3
+}
+
+#repeatables
+# tech_xhk_repeatable_ndb_damage = {
+# 	area = physics
+# 	cost = @repeatableTechBaseCost
+# 	cost_per_level = @repeatableTechLevelCost
+# 	tier = @repeatableTechTier
+# 	category = { particles }
+# 	ai_update_type = military
+# 	levels = 15
+# 	prerequisites = {"tech_xhk_nicoll_dyson"}
+# 	weight = @repeatableTechWeight
+#
+# 	weight_modifier = {
+# 		factor = @repatableTechFactor
+# 	}
+#
+# 	ai_weight = {
+# 		factor = 1.0
+# 	}
+#
+# 	weight_groups = {
+# 		repeatable
+# 	}
+# 	mod_weight_if_group_picked = {
+# 		repeatable = 0.01
+# 	}
+#
+# 	modifier = {
+# 		weapon_type_ndb_weapon_damage_mult = 0.15
+# 	}
+#
+# 	prereqfor_desc = {
+# 		ship = {
+# 			title = "TECH_NDB_DAMAGE_REPEAT"
+# 		}
+# 	}
+# }
+# tech_xhk_repeatable_ndb_fire_rate = {
+# 	area = physics
+# 	cost = @repeatableTechBaseCost
+# 	cost_per_level = @repeatableTechLevelCost
+# 	tier = @repeatableTechTier
+# 	category = { particles }
+# 	ai_update_type = military
+# 	levels = 15
+# 	prerequisites = {"tech_xhk_nicoll_dyson"}
+# 	weight = @repeatableTechWeight
+#
+# 	weight_modifier = {
+# 		factor = @repatableTechFactor
+# 	}
+#
+# 	ai_weight = {
+# 		factor = 1.0
+# 	}
+#
+# 	weight_groups = {
+# 		repeatable
+# 	}
+# 	mod_weight_if_group_picked = {
+# 		repeatable = 0.01
+# 	}
+#
+# 	modifier = {
+# 		weapon_type_ndb_weapon_fire_rate_mult = 0.15
+# 	}
+#
+# 	prereqfor_desc = {
+# 		ship = {
+# 			title = "TECH_NDB_FIRE_RATE_REPEAT"
+# 		}
+# 	}
+# }

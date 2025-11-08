@@ -1,0 +1,87 @@
+projectile_gfx_beam = {
+	#common for all types of projectiles
+	name = "xhk_nicoll_dyson_proj"
+	color = { 1.0 	1.0 	1.0 	1.0 }
+	hit_entity = "ion_cannon_hit_entity"
+	shield_hit_entity = "ion_cannon_shield_hit_entity"
+	muzzle_flash_entity = "ion_cannon_muzzle_entity"
+	windup_entity = "ion_cannon_windup_entity"
+
+	#beam specific data
+	width = 150.0
+	texture_scroll_speed = 1.0
+	texture_tiling = 5.5
+	texture = "gfx/models/combat_items/ion_cannon_diffuse.dds"
+
+	hit = {
+		alpha_curve = { 
+			0.0 	0.0
+			0.05	0.0
+			0.1		40.0
+			0.7		5.0
+			1.0 	0.0
+		}
+		duration = 3.0
+	}
+	miss = {
+		alpha_curve = { 
+			0.0 	0.0
+			0.05	0.0
+			0.1		30.0
+			0.4		5.0
+			1.0 	0.0
+		}
+		duration = 1.5
+	}
+	texture = "gfx/models/combat_items/ion_cannon_diffuse.dds"
+	
+	shield_impact = {
+		size = large
+		loop_duration = 0.5
+		delay = 0.2
+	}
+}
+
+projectile_gfx_beam = {
+	#common for all types of projectiles
+	name = "xhk_nicoll_dyson_secondary_proj"
+	color = { 1.0 0.8 0.5 1.0 }
+	hit_entity = "ion_cannon_hit_entity"
+	shield_hit_entity = "ion_cannon_shield_hit_entity"
+	muzzle_flash_entity = "ion_cannon_muzzle_entity"
+	windup_entity = "ion_cannon_windup_entity"
+
+	#beam specific data
+	width = 15.0
+	texture_scroll_speed = 1.0
+	texture_tiling = 5.5
+	texture = "gfx/models/combat_items/ion_cannon_diffuse.dds"
+
+	hit = {
+		alpha_curve = { 
+			0.0 	0.0
+			0.05	0.0
+			0.1		40.0
+			0.7		5.0
+			1.0 	0.0
+		}
+		duration = 3.0
+	}
+	miss = {
+		alpha_curve = { 
+			0.0 	0.0
+			0.05	0.0
+			0.1		30.0
+			0.4		5.0
+			1.0 	0.0
+		}
+		duration = 1.5
+	}
+	texture = "gfx/models/combat_items/ion_cannon_diffuse.dds"
+	
+	shield_impact = {
+		size = large
+		loop_duration = 0.5
+		delay = 0.2
+	}
+}

@@ -1,0 +1,205 @@
+namespace = xhk_ndb
+
+
+country_event = { #destroyed
+	id = xhk_ndb.1000
+	title = xhk_ndb.1000.title
+	desc = xhk_ndb.1000.desc
+	show_sound = event_structural_collapse
+	picture = GFX_evt_large_explosion
+	is_triggered_only = yes
+	location = ndb_destroyed_system
+
+	trigger = {
+		fromfrom = { is_ship_size = xhk_nicoll_dyson }
+	}
+
+    immediate = {
+        fromfrom.solar_system = {
+            save_global_event_target_as = ndb_destroyed_system
+        }
+    }
+
+    #regular, destroys it normally
+	option = {
+		name = xhk_ndb.1000.a
+		custom_tooltip = xhk_ndb.1000.a.tooltip
+		hidden_effect = {			
+			fromfrom.solar_system = {
+				random_system_planet = {
+					limit = {
+						check_variable = {
+							which = xhk_ndb_id
+							value = prev.fromfrom.xhk_ndb_ship_id
+						}
+					}
+					remove_planet_flag = has_ndb
+				}
+                random_system_megastructure = {
+                    limit = {
+                        check_variable = {
+                            which = xhk_ndb_mega_id
+                            value = prev.fromfrom.xhk_ndb_ship_id
+                        }
+                    }
+                    solar_system = {
+                        spawn_megastructure = {
+                            type = xhk_nicoll_dyson_ruined
+                            planet = prev.planet
+                            owner = root
+                        }
+                    }
+                    remove_megastructure = this
+                }
+			}
+		}
+	}
+
+    #doesnt actually hurt the systemcraft but whatever lol
+    #collapse the star
+	option = {
+		name = xhk_ndb.1000.b
+		trigger = {
+			has_technology = tech_xhk_ndb_supernova
+			has_country_resource = {
+				type = sr_dark_matter
+				amount >= 3000
+			}
+		}
+
+		custom_tooltip = xhk_ndb.1000.b.tooltip
+		add_resource = {
+			sr_dark_matter = -3000
+		}
+		hidden_effect = {
+			fromfrom.solar_system = {
+				# every_ship_in_system = { owner = { country_event = { id = xhk_ndb.1010 } }	}
+				save_global_event_target_as = ndb_destroyed_system
+				random_system_planet = {
+					limit = {
+						check_variable = {
+							which = xhk_ndb_id
+							value = prev.fromfrom.xhk_ndb_ship_id
+						}
+					}
+					remove_planet_flag = has_ndb
+					remove_planet_flag = has_ndb_id
+					clear_variable = xhk_ndb_id
+					solar_system = {
+						random_system_megastructure = {
+                            limit = {
+                                planet = { is_same_value = prevprevprev }
+                            }
+							remove_megastructure = this
+						}
+						destroy_star_system = yes
+						every_ship_in_system = {
+							limit = {
+								owner = {
+									OR = { 
+										is_country_type = fallen_empire
+										is_country_type = awakened_fallen_empire
+									}
+								}
+							}
+							destroy_ship = this
+							#why tf are FEs immune to star eaters
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# country_event = {
+# 	id = xhk_ndb.1010
+# 	title = xhk_ndb.1010.title
+# 	desc = xhk_ndb.1010.desc
+# 	show_sound = event_structural_collapse
+# 	picture = GFX_evt_large_explosion
+# 	is_triggered_only = yes
+# 	location = ndb_destroyed_system
+# }
+
+country_event = { #disband
+	id = xhk_ndb.1001
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { is_ship_size = xhk_nicoll_dyson }
+	}
+
+	immediate = {
+		from.solar_system = {
+			random_system_planet = {
+				limit = {
+					check_variable = {
+						which = xhk_ndb_id
+						value = prev.from.xhk_ndb_ship_id
+					}
+				}
+				remove_planet_flag = has_ndb
+				remove_planet_flag = has_ndb_id
+				clear_variable = xhk_ndb_id
+				solar_system = {
+					random_system_megastructure = {
+						limit = {
+							planet = { is_same_value = prevprevprev }
+						}
+						remove_megastructure = this
+					}
+				}
+			}
+		}
+	}
+}
+
+
+## build stages
+country_event = {
+	id = xhk_ndb.100
+	title = xhk_ndb.100.title
+	desc = xhk_ndb.100.desc
+	picture = GFX_evt_dyson_sphere
+	show_sound = event_dyson_sphere_build_start
+	is_triggered_only = yes
+    location = event_target:xhk_event_system
+}
+country_event = {
+	id = xhk_ndb.101
+	title = xhk_ndb.101.title
+	desc = xhk_ndb.101.desc
+	picture = GFX_evt_dyson_sphere
+	show_sound = event_dyson_sphere_build_start
+	is_triggered_only = yes
+    location = event_target:xhk_event_system
+}
+country_event = {
+	id = xhk_ndb.102
+	title = xhk_ndb.102.title
+	desc = xhk_ndb.102.desc
+	picture = GFX_evt_dyson_sphere
+	show_sound = event_dyson_sphere_build_start
+	is_triggered_only = yes
+    location = event_target:xhk_event_system
+}
+country_event = {
+	id = xhk_ndb.103
+	title = xhk_ndb.103.title
+	desc = xhk_ndb.103.desc
+	picture = GFX_evt_dyson_sphere
+	show_sound = event_dyson_sphere_build_start
+	is_triggered_only = yes
+    location = event_target:xhk_event_system
+}
+country_event = {
+	id = xhk_ndb.104
+	title = xhk_ndb.104.title
+	desc = xhk_ndb.104.desc
+	picture = GFX_evt_dyson_sphere
+	show_sound = event_dyson_sphere_build_start
+	is_triggered_only = yes
+    location = event_target:xhk_event_system
+}

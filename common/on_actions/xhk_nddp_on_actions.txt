@@ -1,0 +1,2 @@
+on_fleet_disbanded = {						events = { xhk_ndb.1001 } }
+on_fleet_destroyed_victim = {				events = { xhk_ndb.1000 } }

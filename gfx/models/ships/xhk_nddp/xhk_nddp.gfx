@@ -1,0 +1,17 @@
+objectTypes = {
+	pdxmesh = {
+		name = "mammalian_colossus_rings_half_mesh"
+		file = "gfx/models/ships/atradai/mammalian_colossus_rings_half.mesh"
+		
+		animation = { id = "idle"			type = "mammalian_01_colossus_rings_idle_animation" }
+		
+		meshsettings = {
+			name = "rings_meshShape"
+			index = 0
+			texture_diffuse = "mammalian_01_colossus_diffuse.dds"
+			texture_normal = "mammalian_01_colossus_normal.dds"
+			texture_specular = "mammalian_01_colossus_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

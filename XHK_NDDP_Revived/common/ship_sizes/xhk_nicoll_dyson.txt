@@ -7,15 +7,15 @@ xhk_nicoll_dyson = {
 	collision_radius = 32
 	formation_priority = 32
 	modifier = {
-		ship_evasion_mult = -10
+		ship_evasion_mult = -999
 		ship_armor_add = 1000000
 		ship_shield_add = 1000000
 		ship_hull_mult = 0.1
 		ship_shield_mult = 0.2
 		ship_armor_mult = 0.2
 	}
-	max_hitpoints = 2000000
-	size_multiplier = 32
+	max_hitpoints = 3000000
+    size_multiplier = 750
 	fleet_slot_size = 250
 	section_slots = {
 		"bow" =	{ locator = "part1" }
@@ -42,7 +42,7 @@ xhk_nicoll_dyson = {
 	resources = {
 		category = ships
 		upkeep = {
-			energy = 130
+			energy = 100
 			alloys = 50
 		}
 	}

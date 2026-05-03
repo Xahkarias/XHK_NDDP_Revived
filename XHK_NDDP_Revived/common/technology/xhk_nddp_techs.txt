@@ -3,7 +3,7 @@ tech_xhk_nicoll_dyson = {
 	area = physics
 	tier = 5
 	category = { field_manipulation }
-	prerequisites = { "tech_mega_engineering" "tech_dyson_sphere" }
+	prerequisites = { "tech_mega_engineering" "tech_dyson_sphere" "giga_tech_maginot_world" }
 	weight = @tier5weight3
 }
 

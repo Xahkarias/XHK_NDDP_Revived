@@ -6,3 +6,4 @@ tags={
 name="Nicol Dyson Defense Platform Revived"
 picture="thumbnail.png"
 supported_version="v4.3.*"
+remote_file_id="3719546011"
